@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { motion, useAnimationFrame, useInView, useMotionValue, useReducedMotion, useSpring, useTransform } from 'framer-motion';
 import { EASE } from './ui';
+import { asset } from '../lib/asset';
 
 /**
  * A "living photo": the background (soft, depth-of-field) and the sharp cut-out of Anish sit on separate layers
@@ -132,13 +133,13 @@ export default function ContactPhoto() {
         {/* camera push-in + focus pull on entry */}
         <motion.div
           className="absolute inset-0"
-          initial={{ scale: 1.22, filter: 'blur(12px)', opacity: 0 }}
-          animate={inView ? { scale: 1, filter: 'blur(0px)', opacity: 1 } : {}}
+          initial={{ scale: 1.18 }}
+          animate={inView ? { scale: 1 } : {}}
           transition={{ duration: 2.2, ease: EASE }}
         >
           {/* background layer: soft scene + pulsing lights */}
           <motion.div className="absolute -inset-[7%]" style={{ x: bgX, y: bgY }}>
-            <img src="/assets/anish-live-bg.webp" alt="" draggable={false} loading="lazy" decoding="async" className="h-full w-full object-cover" />
+            <img src={asset('/assets/anish-live-bg.webp')} alt="" draggable={false} loading="lazy" decoding="async" className="h-full w-full object-cover" />
             {LIGHTS.map((l, i) => (
               <motion.span
                 key={i}
@@ -159,12 +160,12 @@ export default function ContactPhoto() {
               animate={reduce ? undefined : { scale: [1, 1.009, 1], rotate: [-0.35, 0.35, -0.35] }}
               transition={{ duration: 6.5, repeat: Infinity, ease: 'easeInOut' }}
             >
-              <img src="/assets/anish-live-person.webp" alt="Anish Kumar Tiwari in a navy suit, leaning on a granite wall" draggable={false} loading="lazy" decoding="async" className="h-full w-full object-cover drop-shadow-[0_24px_40px_rgba(0,0,0,0.55)]" />
+              <img src={asset('/assets/anish-live-person.webp')} alt="Anish Kumar Tiwari in a navy suit, leaning on a granite wall" draggable={false} loading="lazy" decoding="async" className="h-full w-full object-cover drop-shadow-[0_24px_40px_rgba(0,0,0,0.55)]" />
               {!reduce && (
                 <motion.div
                   aria-hidden
                   className="absolute inset-0 mix-blend-soft-light"
-                  style={{ WebkitMaskImage: 'url(/assets/anish-live-person.webp)', maskImage: 'url(/assets/anish-live-person.webp)', WebkitMaskSize: '100% 100%', maskSize: '100% 100%', backgroundImage: 'linear-gradient(105deg, transparent 35%, rgba(255,235,190,0.95) 50%, transparent 65%)', backgroundSize: '260% 100%' }}
+                  style={{ WebkitMaskImage: `url(${asset('/assets/anish-live-person.webp')})`, maskImage: `url(${asset('/assets/anish-live-person.webp')})`, WebkitMaskSize: '100% 100%', maskSize: '100% 100%', backgroundImage: 'linear-gradient(105deg, transparent 35%, rgba(255,235,190,0.95) 50%, transparent 65%)', backgroundSize: '260% 100%' }}
                   animate={{ backgroundPositionX: ['130%', '-30%'] }}
                   transition={{ duration: 2.8, repeat: Infinity, repeatDelay: 3.4, ease: 'easeInOut' }}
                 />

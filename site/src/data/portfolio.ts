@@ -1,3 +1,4 @@
+import { asset } from '../lib/asset';
 /** Central portfolio content, based on Anish Kumar Tiwari's two supplied resumes. */
 export type Palette = { from: string; via: string; to: string; accent: string };
 const crimson: Palette = { from: '#24060b', via: '#6e0d1d', to: '#09070a', accent: '#ff3d5a' };
@@ -13,12 +14,12 @@ export const profile = {
   intro: 'B.Tech Computer Science and Engineering graduate with hands-on experience in Python, SQL, data analysis and machine learning. Experienced in data cleaning, EDA, feature engineering, dashboards and predictive modelling through retail, telecom and ML audit projects.',
   location: 'Ranchi, Jharkhand, India', email: 'at4344958@gmail.com', phone: '7762953029',
   links: { linkedin: 'https://www.linkedin.com/in/anish-kumar-tiwari-90412a2b6/', github: 'https://github.com/anish071', portfolio: 'https://anish071.github.io/portfolio2.0/' },
-  resumePdf: '/assets/Anish_Data_Analyst_Resume.pdf',
+  resumePdf: asset('/assets/Anish_Data_Analyst_Resume.pdf'),
   resumes: [
-    { label: 'Data Analyst Resume', file: '/assets/Anish_Data_Analyst_Resume.pdf', download: 'Anish_Data_Analyst_Resume.pdf', description: 'SQL, Python, Power BI, Tableau, Excel and analytics projects.' },
-    { label: 'AI / ML Resume', file: '/assets/Anish_AI_ML_Resume.pdf', download: 'Anish_AI_ML_Resume.pdf', description: 'Data Science, machine learning, deep learning and AI/ML projects.' },
+    { label: 'Data Analyst Resume', file: asset('/assets/Anish_Data_Analyst_Resume.pdf'), download: 'Anish_Data_Analyst_Resume.pdf', description: 'SQL, Python, Power BI, Tableau, Excel and analytics projects.' },
+    { label: 'AI / ML Resume', file: asset('/assets/Anish_AI_ML_Resume.pdf'), download: 'Anish_AI_ML_Resume.pdf', description: 'Data Science, machine learning, deep learning and AI/ML projects.' },
   ],
-  portrait: { src: '/assets/anish-portrait-1086.webp', srcSet: '/assets/anish-portrait-420.webp 420w, /assets/anish-portrait-720.webp 720w, /assets/anish-portrait-1086.webp 1086w', alt: 'Anish Kumar Tiwari, Data Analyst and AI/ML Engineer' },
+  portrait: { src: asset('/assets/anish-portrait-1086.webp'), srcSet: `${asset('/assets/anish-portrait-420.webp')} 420w, ${asset('/assets/anish-portrait-720.webp')} 720w, ${asset('/assets/anish-portrait-1086.webp')} 1086w`, alt: 'Anish Kumar Tiwari, Data Analyst and AI/ML Engineer' },
   interests: ['Data Analytics', 'Machine Learning', 'Deep Learning', 'Business Intelligence'],
 };
 

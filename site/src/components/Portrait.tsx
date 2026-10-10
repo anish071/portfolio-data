@@ -57,11 +57,23 @@ export default function Portrait({ onStage }: { onStage?: (i: number) => void })
         });
       }, 3500),
     );
+    // failsafe: whatever happens (throttled tab, slow phone), the photo is on screen after a few seconds
+    timers.push(
+      window.setTimeout(() => {
+        ctl?.stop();
+        reveal.set(100);
+        photoOpacity.set(1);
+        viewRef.current = 'photo';
+        setView('photo');
+        setDone(true);
+        stageCb.current?.(3);
+      }, 7000),
+    );
     return () => {
       timers.forEach(window.clearTimeout);
       ctl?.stop();
     };
-  }, [reveal]);
+  }, [reveal, photoOpacity]);
 
   const toggle = (v: View) => {
     if (!done) return;
@@ -308,7 +320,7 @@ export default function Portrait({ onStage }: { onStage?: (i: number) => void })
           alt={profile.portrait.alt}
           draggable={false}
           className="pointer-events-none absolute inset-0 h-full w-full object-contain"
-          style={{ clipPath: clip, opacity: photoOpacity }}
+          style={{ clipPath: done ? 'none' : clip, opacity: photoOpacity }}
         />
         {/* model line sweeping across */}
         <motion.div aria-hidden className="pointer-events-none absolute inset-y-0 w-px" style={{ left: sweepLeft, opacity: sweepOpacity }}>
