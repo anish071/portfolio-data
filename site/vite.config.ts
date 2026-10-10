@@ -3,12 +3,16 @@ import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
+  base: '/portfolio-data/',
   plugins: [react(), tailwindcss()],
   build: {
     target: 'es2020',
     rollupOptions: {
       output: {
-        manualChunks: { motion: ['framer-motion'], react: ['react', 'react-dom'] },
+        manualChunks: {
+          motion: ['framer-motion'],
+          react: ['react', 'react-dom'],
+        },
       },
     },
   },
